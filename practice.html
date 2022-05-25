@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="bootstrap-4.0.0-dist/css/bootstrap.min.css">
+
+    <script>
+        
+    var together = [];
+    function submit(){
+        together = JSON.parse(localStorage.getItem('Data'));
+        if(together != null){
+            firName = fname.value;
+            fname.value = "";
+            lstName = lname.value;
+            lname.value = "";
+            Eemail = mail.value;
+            mail.value = "";
+            ppp = pass.value
+            pass.value = "";
+            together.push(
+                {
+                    "firstname":firName,
+                    "lastName":lstName,
+                    "email" : Eemail,
+                    "password" :ppp
+                }
+            );
+            localStorage.setItem("Data", JSON.stringify(together));
+            console.log(together);
+        }
+            
+        else{
+            firName = fname.value;
+            fname.value = "";
+            lstName = lname.value;
+            lname.value = "";
+            Eemail = mail.value;
+            mail.value = "";
+            ppp = pass.value
+            pass.value = "";
+            together.push({
+                "frname":firName,
+                "lastName":lstName,
+                "email" : Eemail,
+                "password" :ppp
+            });
+        
+            console.log(together);
+        }
+    }
+        function show(){  
+            let tobi = "";
+            
+            for(p = 0; p<together.length; p++){
+                tobi += "<tr>";
+                    tobi += "<tr><td>" +(p+1) + "</td> <td>" + together[p].frname + "</td> <td> " +  together[p].lastName +  "<td>"+ together[p].email + "</td>"+ "<td>"+ together[p].password + "</td>" +"</td><td> <button onclick= \"dele(" + p + ")\" > X </button></td><td><button onclick = \"edittogether(" +p+ ")\"> ED</button><button onclick = \"updatetogether(" +p+ ")\"> UP</button></td></tr>";
+                tobi += "</tr>";
+            
+            }  
+            document.getElementById("display").innerHTML = tobi;
+            console.log(tobi);    
+        }
+        function dele(n){
+            if(confirm('Are you sure you want to delete ' + together[n].firstName +" " + together[n].lastName + ' from this list') == true){
+                together.splice(n,1);
+                show();
+            } 
+            else{
+                alert("No changes were made")
+            }
+        }
+
+        function edittogether(t){
+            lname.value = together[t].frname;
+            fname.value = together[t].lastName;
+            mail.value =  together[t].email;
+            pass.value =  together[t].password;
+        }
+        function updatetogether(w){
+            together[w].frname = fName.value;
+            together[w].lastName = lName.value;
+            show();
+        }
+    </script>
+</head>
+<body>
+    <div class="container  my-5">
+        <div class="form-group form-control">
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                    <h2 class="fw-bold text-"><em>ATTENDANCE SOFTWARE SYSTEM</em></h2>
+                    <label for="" class="fw-bold">FirstName</label>
+                    <input type="text" class="form-control mt-1"  id="fname" value="">
+                    <label for="">lastName</label>
+                    <input type="text" class="form-control mb-3" id="lname" value="">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control mb-3" id="mail" value="">
+                    <label for="">password</label>
+                    <input type="password" class="form-control mb-3" id="pass" value="">
+                    <button type="button" class="btn btn-primary text-white mx-3" onclick="submit()">SUBMIT</button>
+                    <button type="button" class="btn btn-success text-white text-uppercase" onclick="show()">Display</button>
+                </div>
+            </div>
+        </div> 
+        <table border="1" class="table-striped table  table-hover" >
+            <thead>
+                <tr class="table-primary">
+                    <th class="text-dark">S/N</th>
+                    <th class="text-dark">FirstName</th>
+                    <th class="text-dark">lastName</th>
+                    <th class="text-dark">email</th>
+                    <th class="text-dark">password</th>
+                    <th>delete</th>
+                    <th>edit</th>
+                </tr>
+            </thead>
+            <tbody id="display"  class="table-reponsive"></tbody>
+        </table>    
+    </div>
+    <script type="text/javascript" src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
