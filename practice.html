@@ -31,8 +31,9 @@
             );
             localStorage.setItem("Data", JSON.stringify(together));
             console.log(together);
+           
         }
-            
+       
         else{
             firName = fname.value;
             fname.value = "";
@@ -43,7 +44,7 @@
             ppp = pass.value
             pass.value = "";
             together.push({
-                "frname":firName,
+                "firstname":firName,
                 "lastName":lstName,
                 "email" : Eemail,
                 "password" :ppp
@@ -51,13 +52,14 @@
         
             console.log(together);
         }
+        localStorage.setItem("Data", JSON.stringify(together));
     }
         function show(){  
             let tobi = "";
             
             for(p = 0; p<together.length; p++){
                 tobi += "<tr>";
-                    tobi += "<tr><td>" +(p+1) + "</td> <td>" + together[p].frname + "</td> <td> " +  together[p].lastName +  "<td>"+ together[p].email + "</td>"+ "<td>"+ together[p].password + "</td>" +"</td><td> <button onclick= \"dele(" + p + ")\" > X </button></td><td><button onclick = \"edittogether(" +p+ ")\"> ED</button><button onclick = \"updatetogether(" +p+ ")\"> UP</button></td></tr>";
+                    tobi += "<tr><td>" +(p+1) + "</td> <td>" + together[p].firstname + "</td>" + " <td> " +  together[p].lastName +  "<td>"+ together[p].email + "</td>"+ "<td>"+ together[p].password + "</td>" +"</td><td> <button onclick= \"dele(" + p + ")\" > X </button></td><td><button onclick = \"edittogether(" +p+ ")\"> ED</button><button onclick = \"updatetogether(" +p+ ")\"> UP</button></td></tr>";
                 tobi += "</tr>";
             
             }  
